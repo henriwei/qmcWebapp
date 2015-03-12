@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<question_multi_choice 
+		id = '1'
+		question = 'who will you save at first, your mother or your wife'/>
+	
+	<question_multi_choice 
+		id = '2'
+		question = 'What`s the difference between datasource and connection'/>
+	
+	<question_multi_choice 
+		id = '3'
+		question = 'What`s the difference between truncate and delete in sql'/>
+	
+	<choice
+		question_id = '1'
+		text = 'mother'
+		correctness = 'true' 
+		selectedtimes = '0' />
+		
+	<choice
+		question_id = '1'
+		text = 'daughter'
+		correctness = 'false' 
+		selectedtimes = '0' />
+		
+	<choice
+		question_id = '2'
+		text = 'datasource controls connection'
+		correctness = 'true' 
+		selectedtimes = '0' />
+		
+	<choice
+		question_id = '2'
+		text = 'connection knows about pooling'
+		correctness = 'false' 
+		selectedtimes = '0' />
+		
+	<Tag
+		id = '1'
+		name = 'no match' />
+		
+	<Tag
+		id = '2'
+		name = 'moral' />
+	
+	<Tag
+		id = '3'
+		name = 'database' />
+		
+	<tag_question_association
+		tag_id = '2'
+		question_id = '1' />
+		
+	<tag_question_association
+		tag_id = '3'
+		question_id = '2' />
+		
+	<tag_question_association
+		tag_id = '3'
+		question_id = '3' />
+		
+</dataset>

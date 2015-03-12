@@ -1,0 +1,78 @@
+<!-- <!-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --> -->
+<!-- <!-- <%@ page session="false" %> --> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- 	<title>Home</title> -->
+<!-- </head> -->
+<!-- <body> -->
+<!-- <h1> -->
+<!-- 	Hello world!   -->
+<!-- </h1> -->
+
+<!-- <P>  The time on the server is ${serverTime}. </P> -->
+<!-- </body> -->
+<!-- </html> -->
+
+<!-- <!DOCTYPE html> -->
+<!-- <html ng-app> -->
+<!-- <head> -->
+<!--     <title>First Test</title> -->
+<!--     <script src="resources/js/angular.js"></script> -->
+<!--     <link href="resources/css/bootstrap.css" rel="stylesheet" /> -->
+<!-- </head> -->
+<!-- <body> -->
+<!--     <div class="btn btn-default">{{"AngularJS"}}</div> -->
+<!--     <div class="btn btn-success">Bootstrap</div> -->
+<!-- </body> -->
+<!-- </html> -->
+
+<!DOCTYPE html>
+<html ng-app="qmcApp">
+<head>
+    <title>qcm</title>
+    <script src="resources/js/lib/angular.js"></script>
+    <script src="resources/js/lib/angular-resource.js"></script>
+    <script src="resources/js/qmc-controller.js"></script>
+    <link href="resources/css/bootstrap.css" rel="stylesheet" />
+    <link href="resources/css/bootstrap-theme.css" rel="stylesheet" />
+    <script>
+        
+    </script>
+</head>
+<body ng-controller="defaultCtrl">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            
+                    <span ng-hide="questions.length">
+                        No Data
+                    </span>
+                    <div ng-repeat="question in questions" ng-show="questions.length">
+                        <label><strong>{{question.question}}?</strong></label> <br>
+                        <span ng-repeat="tag in question.tags"><em class="btn btn-default btn-xs disabled">{{tag.name}}</em><span> </span></span>
+                        <div ng-show="question.choices">
+                        	<div ng-repeat="choice in question.choices">
+	                        	<div ng-class="{'has-success': choice.correctness===true}">
+<!-- 								<div class="has-success"> -->
+		                        	<input type="checkbox" ng-model="choice.selected"/>
+		                        	<label class="control-label">{{choice.text}}</label>
+		                        </div>
+<!-- 		                        <span> -->
+<!-- 		                        	{{choice.correctness}} -->
+<!-- 		                        </span> -->
+	                        </div>
+                        </div>
+                    </div>
+            
+        </div>
+        <div ng-show="questionsWithCorrectAnswer.length">
+        	<label> good choices: {{goodChoiceNum}}, wrong choices: {{badChoiceNum}}, wrong answer: {{wrongAnswer}}</label>
+        </div>
+        <div class="panel-body">
+<!--         	<p><button class="btn btn-primary"  -->
+<!--                 ng-click="loadData()">Show questions</button></p> -->
+            <p><button class="btn btn-primary" 
+                ng-click="sendChoices()">Send choices</button></p>
+        </div>
+    </div>
+</body>
+</html>

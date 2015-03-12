@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<tag 
+		id = '1' 
+		name = 'database' />
+		
+	<tag 
+		id = '2' 
+		name = 'persistence' />
+	
+	<question_multi_choice 
+		id = '1'
+		question = 'a'/>
+	
+	<question_multi_choice 
+		id = '2'
+		question = 'b'/>
+	
+	<tag_question_association 
+		tag_id = '1'
+		question_id = '1' />
+		
+	<tag_question_association 
+		tag_id = '2'
+		question_id = '1' />
+		
+</dataset>
