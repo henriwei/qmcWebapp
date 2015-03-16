@@ -21,6 +21,7 @@ import com.myway.questmultichoice.domaine.Choice;
 import com.myway.questmultichoice.domaine.QuestionMultiChoice;
 import com.myway.questmultichoice.domaine.QuestionTag;
 import com.myway.questmultichoice.repository.QuestionMultiChoiceRepository;
+import com.myway.questmultichoice.service.ChoiceService;
 import com.myway.questmultichoice.service.QuestionMultiChoiceService;
 import com.myway.questmultichoice.service.QuestionTagService;
 import com.myway.questmultichoice.service.exception.BusinessConstraintViolationException;
@@ -87,6 +88,7 @@ public class QuestionMultiChoiceServiceImpl implements
 				throw new BusinessConstraintViolationException(BusinessConstraintCode.CHOICE_TEXT_SHOULD_BE_UNIQUE_PER_QUESTION);
 			}
 		}
+		choice.setQuestion(existingQcm);
 		existingQcm.getChoices().add(choice);
 	}
 
@@ -100,12 +102,7 @@ public class QuestionMultiChoiceServiceImpl implements
 	}
 
 	@Override
-	public void updateChoiceSelectedTimes(QuestionMultiChoice qmc) throws IllegalArgumentException{
-		QuestionMultiChoice existingQmc = qcmRepository.findOne(qmc.getId());
-		if(existingQmc == null) throw new IllegalArgumentException();
-		for(Choice c : qmc.getChoices()){
-			if(c.isSelected()) c.incrementSelectedTime();
-		}
-		qcmRepository.save(qmc);
+	public void remove(Long id) {
+		qcmRepository.delete(id);
 	}
 }

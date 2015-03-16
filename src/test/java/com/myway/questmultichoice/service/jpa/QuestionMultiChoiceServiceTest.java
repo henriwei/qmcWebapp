@@ -1,22 +1,17 @@
 package com.myway.questmultichoice.service.jpa;
 
 //import static junit.framework.Assert.*;
-import static org.fest.assertions.Assertions.assertThat;
-import static com.googlecode.catchexception.CatchException.*;
+import static com.googlecode.catchexception.CatchException.catchException;
+import static com.googlecode.catchexception.CatchException.caughtException;
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
-import java.util.Collection;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.AssertTrue;
-
 import org.junit.Test;
-
-import static org.mockito.Mockito.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 import com.myway.questmultichoice.domaine.Choice;
 import com.myway.questmultichoice.domaine.QuestionMultiChoice;
@@ -76,6 +71,7 @@ public class QuestionMultiChoiceServiceTest extends AbstractServiceImplTest {
 		// act
 		// use the service
 		QuestionMultiChoice qcm = qmcService.findOne(questionId);
+		List<Choice> existingChoices = qcm.getChoices();
 
 		// assert by using the entity manager directly
 		// we have to detach the object we just persist, otherwise the
@@ -91,6 +87,8 @@ public class QuestionMultiChoiceServiceTest extends AbstractServiceImplTest {
 		QuestionMultiChoice expected = em.find(QuestionMultiChoice.class, questionId);
 		assertThat(qcm).isEqualTo(expected); // assert equality by using the override equals()
 		assertThat(qcm.getChoices()).isNotEmpty();  //The choices of a question should be fetched too when the question is fetched.
+//		assertThat(qcm.getChoices().get(0)).isEqualTo(expected.getChoices().get(0));
+		assertThat(qcm.getChoices()).containsExactly(expected.getChoices().toArray(new Choice[0]));
 	}
 
 	@Test(expected = DataIntegrityViolationException.class) // expected = ... is not clear enough, consider using googlecode's catch-exception library.
@@ -108,6 +106,28 @@ public class QuestionMultiChoiceServiceTest extends AbstractServiceImplTest {
 		// assert This gives bad message, caughtException() returns null if no exception is caught.
 		// assertThat(caughtException()).isInstanceOf(DataIntegrityViolationException.class);
 
+	}
+	
+	@Test
+	public void save_shouldCascadePersistChoices_whenQuestionIsNew(){
+		//arrange
+		QuestionMultiChoice newQmc = new QuestionMultiChoice("new question");
+		Choice newChoice = new Choice("new choix", true);
+		newChoice.setQuestion(newQmc);  //this is mandatory, because foreign key (question_id) constraint in Choice, it must has a value.
+		ArrayList<Choice> choices = new ArrayList<Choice>();
+		choices.add(newChoice);
+		newQmc.setChoices(choices);
+		em.clear();
+		
+		//act
+		qmcService.save(newQmc);
+		em.flush();
+		
+		//assert
+		em.clear();
+		QuestionMultiChoice actualQmc = em.find(QuestionMultiChoice.class, newQmc.getId());
+		assertThat(actualQmc).isEqualTo(newQmc);
+		assertThat(actualQmc.getChoices()).contains(newChoice);
 	}
 
 	@Test
@@ -235,56 +255,6 @@ public class QuestionMultiChoiceServiceTest extends AbstractServiceImplTest {
 		em.clear();
 		qcm = em.find(QuestionMultiChoice.class, qcm.getId());
 		assertThat(qcm.getChoices()).hasSize(sizeBeforeInsert + 1).contains(newChoice);
-	}
-	
-	@Test
-	public void updateChoiceSelectedTimes_shouldIncreaseSelectedTimesWhenSelected(){
-		//arrange
-		Long questId = 1L;
-		int choiceIndex = 1;
-		QuestionMultiChoice qmc = qmcService.findOne(questId);
-		List<Choice> choices = qmc.getChoices();
-		Choice choice = choices.get(choiceIndex);
-		long selectedTimesBefore = choice.getSelectedTimes();
-		choice.setSelected(true);
-		em.clear();
-		
-		//act
-		qmcService.updateChoiceSelectedTimes(qmc);
-		em.flush();
-		
-		//assert
-		em.clear();
-		assertThat(qmcService.findOne(questId).getChoices().get(choiceIndex).getSelectedTimes()).isEqualTo(selectedTimesBefore+1);
-	}
-	
-	@Test
-	public void updateChoiceSelectedTimes_shouldNotModifyOtherFields(){
-		//arrange
-		Long questId = 1L;
-		int choiceIndex = 1;
-		QuestionMultiChoice qmc = qmcService.findOne(questId);
-		List<Choice> choices = qmc.getChoices();
-		Choice existingChoice = choices.get(choiceIndex);
-		long selectedTimesBefore = existingChoice.getSelectedTimes();
-		String oldText = existingChoice.getText();
-		boolean oldCorrectness = existingChoice.isCorrectness();
-		existingChoice.setSelected(true);
-		//insert corrupted choice in the qmc should not change the existing choice
-		Choice corruptChoice = new Choice("corruption", true);
-		choices.remove(choiceIndex);
-		choices.add(choiceIndex, corruptChoice);
-		em.clear();
-		
-		//act
-		qmcService.updateChoiceSelectedTimes(qmc);
-		em.flush();
-		
-		//assert
-		em.clear();
-		Choice newChoice = qmcService.findOne(questId).getChoices().get(choiceIndex);
-		assertThat(newChoice.getText()).isEqualTo(oldText);
-		assertThat(newChoice.isCorrectness()).isEqualTo(oldCorrectness);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -430,6 +400,20 @@ public class QuestionMultiChoiceServiceTest extends AbstractServiceImplTest {
 		assertThat(newTag.getQuestions()).hasSize(oldQuestionListSize + 1).contains(existingQmc);
 	}
 	
-	
+	@Test
+	public void remove_shouldRemoveAllTheChoicesOfThisQuestion(){
+		//arrage
+		Long existingQmcId = 1L;
+		Long existingChoiceIdOne = 1L;
+		Long existingChoiceIdTwo = 2L;
+		
+		//act
+		qmcService.remove(1L);
+		
+		//assert
+		assertThat(em.find(QuestionMultiChoice.class, existingQmcId)).isNull();
+		assertThat(em.find(Choice.class, existingChoiceIdOne)).isNull();
+		assertThat(em.find(Choice.class, existingChoiceIdTwo)).isNull();
+	}
 	
 }

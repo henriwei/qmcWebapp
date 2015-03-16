@@ -10,8 +10,8 @@ insert into question_multi_choice (question) values ('What''s the difference bet
 insert into question_multi_choice (question) values ('Do you prefer save money then spend it or spend credits first');
 insert into question_multi_choice (question) values ('What''s the difference between truncate and delete in sql');
 
-insert into choice values (1, 'mother', true, 0);
-insert into choice values (1, 'daughter', false, 0);
+insert into choice values (1, 1, 'mother', true, 0);
+insert into choice values (2, 1, 'daughter', false, 0);
 
 insert into tag values (1, 'moral');
 insert into tag values (2, 'computer science');

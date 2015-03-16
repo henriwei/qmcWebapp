@@ -40,17 +40,4 @@ public class QuestionMultiChoiceController {
 	public List<QuestionMultiChoice> findAllWithAnswer(){
 		return qmcService.findAll();
 	}
-	
-	/**
-	 * Receive the qmc answers and process it.
-	 */
-	@RequestMapping(value = "/questions/sendanswer", method = RequestMethod.POST)
-	@ResponseBody
-	public void receiveAnswer(@RequestBody List<QuestionMultiChoice> questions){
-		logger.info("receiving answers");
-		//update the selected times for every choice
-		for(QuestionMultiChoice qmc : questions){
-			qmcService.updateChoiceSelectedTimes(qmc);
-		}
-	}
 }

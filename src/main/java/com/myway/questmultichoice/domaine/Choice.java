@@ -3,6 +3,10 @@ package com.myway.questmultichoice.domaine;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.CollectionTable;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -10,10 +14,15 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
-@Embeddable
-public class Choice{
+@Entity
+@Table(name="choice")
+public class Choice extends AbstractEntityBase{
 	
 	private static final long serialVersionUID = -1442801147447896689L;
+	
+	@ManyToOne
+	@JoinColumn(name="question_id")
+	private QuestionMultiChoice question;
 	
 	@Column(name="text", nullable=false)
 	private String text;
@@ -81,11 +90,20 @@ public class Choice{
 	public void setSelectedTimes(long selectedTimes) {
 		this.selectedTimes = selectedTimes;
 	}
+	
+	public QuestionMultiChoice getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(QuestionMultiChoice question) {
+		this.question = question;
+	}
 
 	public void incrementSelectedTime() {
 		this.selectedTimes += 1;
 	}
 	
+
 	public String toString(){
 		return text;
 	}

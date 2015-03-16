@@ -1,23 +1,14 @@
 package com.myway.questmultichoice.domaine;
 
-import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.persistence.CollectionTable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OrderBy;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 @Table(name="QUESTION_MULTI_CHOICE")
@@ -42,24 +33,13 @@ public class QuestionMultiChoice extends AbstractEntityBase{
 	@Column(name="question", nullable=false)  //this is JPA annotation, it indicates database schema detail
 	private String question;
 	
-//	@ManyToMany
-//	@JoinTable(name="correct_choice",
-//		joinColumns=@JoinColumn(name="question_multi_choice_id"),
-//		inverseJoinColumns=@JoinColumn(name="choice_id")
-//	)
-	@OrderBy("text")  //order the choice collection, otherwise the order is undefined between too fetchs.
-	@ElementCollection(fetch=FetchType.EAGER)
-	@CollectionTable(name="choice",
-	joinColumns=@JoinColumn(name="question_id"))
+//	@ElementCollection(fetch=FetchType.EAGER)
+//	@CollectionTable(name="choice",
+//	joinColumns=@JoinColumn(name="question_id"))
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="question", cascade=CascadeType.ALL)
+	//if the choice need to be persisted in cascade mode with new QuestionMultiChoice, Choice will require the id of question, which is not be available.
 	private List<Choice> choices;
 	
-//	private List<Choice> wrongChoices;
-	
-//	@ManyToMany
-//	@JoinTable(name="tag_question_association",
-//		joinColumns=@JoinColumn(name="question_id"),
-//		inverseJoinColumns=@JoinColumn(name="tag_id")
-//	)
 	@ManyToMany(mappedBy="questions")
 	private List<QuestionTag> tags;
 	

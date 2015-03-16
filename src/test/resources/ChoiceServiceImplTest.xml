@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<question_multi_choice 
+		id = '1'
+		question = 'who will you save at first, your mother or your wife'/>
+		
+	<choice
+		id = '1'
+		question_id = '1'
+		text = 'mother'
+		correctness = 'true' 
+		selectedtimes = '0' />
+		
+	<choice
+		id = '2'
+		question_id = '1'
+		text = 'daughter'
+		correctness = 'false' 
+		selectedtimes = '0' />
+		
+</dataset>

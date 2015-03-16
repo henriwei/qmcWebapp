@@ -53,5 +53,9 @@ public interface QuestionMultiChoiceService {
 	 */
 	public void addTagToQuestion(Long qcmId, QuestionTag tag) throws IllegalArgumentException;
 
-	public void updateChoiceSelectedTimes(QuestionMultiChoice qmc) throws IllegalArgumentException;
+	/**
+	 * remove the corresponding QuestionMultiChoice based on the id.
+	 * @param id
+	 */
+	public void remove(Long id);
 }

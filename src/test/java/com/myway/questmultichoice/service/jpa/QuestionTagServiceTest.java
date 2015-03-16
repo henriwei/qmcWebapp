@@ -20,7 +20,7 @@ import com.myway.questmultichoice.service.QuestionTagService;
 import com.myway.questmultichoice.service.exception.BusinessConstraintViolationException;
 import com.myway.questmultichoice.service.jpa.annotation.DataSets;
 
-import static org.fest.assertions.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 @DataSets
 public class QuestionTagServiceTest extends AbstractServiceImplTest {
