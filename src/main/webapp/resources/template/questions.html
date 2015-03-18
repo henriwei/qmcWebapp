@@ -1,0 +1,32 @@
+
+<span ng-hide="questions.length"> No Data </span>
+<div ng-repeat="question in questions" ng-show="questions.length">
+	<label><strong>{{question.question}}?</strong></label> <br> <span
+		ng-repeat="tag in question.tags"><em
+		class="btn btn-default btn-xs disabled">{{tag.name}}</em><span>
+	</span></span>
+	<div ng-show="question.choices">
+		<div ng-repeat="choice in question.choices">
+			<div ng-class="{'has-success': choice.correctness===true}">
+				<!-- 								<div class="has-success"> -->
+				<input type="checkbox" ng-model="choice.selected" /> <label
+					class="control-label">{{choice.text}}</label>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+<div ng-show="questionsWithCorrectAnswer.length">
+	<label> good choices: {{goodChoiceNum}}, wrong choices:
+		{{badChoiceNum}}, wrong answer: {{wrongAnswer}}</label>
+</div>
+<div class="panel-body">
+	<!--         	<p><button class="btn btn-primary"  -->
+	<!--                 ng-click="loadData()">Show questions</button></p> -->
+	<p>
+		<button class="btn btn-primary" ng-click="sendChoices()">Send
+			choices</button>
+	</p>
+</div>
+

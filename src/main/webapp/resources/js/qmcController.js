@@ -1,17 +1,12 @@
-angular.module("qmcApp", ["ngResource"])  //import ngResource module from angular-resource.js for the $resource service
-.constant("baseUrl", "http://localhost:8081/qmc/questmultichoice/questions/")
-.constant("getAnswerUrl", "http://localhost:8081/qmc/questmultichoice/questions/correctanswers/")
-.controller("defaultCtrl", function ($scope, $http, $resource, baseUrl, getAnswerUrl) {
-//             $scope.loadData = function () {
-//             	$http.get("questmultichoice/questions").success(function (data) {
-//                     $scope.questions = data;
-//                 });
-//             }
+angular.module("qmcApp")
+.controller("qmcController", function ($scope, $http, $resource, baseUrl, getAnswerUrl, data) {
+
 	$scope.questionsResource = $resource(baseUrl + ":id", {id : "@id"});
 	$scope.questionsWithCorrectAnswerResource = $resource(getAnswerUrl + ":id", {id : "@id"});
 	
 	$scope.findAll = function(){
-		$scope.questions = $scope.questionsResource.query();
+//		$scope.questions = $scope.questionsResource.query();
+		$scope.questions = data;
 	}
 	
 	$scope.sendChoices = function(){

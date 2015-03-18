@@ -20,6 +20,7 @@ public class Choice extends AbstractEntityBase{
 	
 	private static final long serialVersionUID = -1442801147447896689L;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="question_id")
 	private QuestionMultiChoice question;

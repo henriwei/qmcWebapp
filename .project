@@ -44,4 +44,21 @@
 		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/webapp/resources/js/lib/angular-route.js</name>
+			<type>1</type>
+			<location>C:/Users/Zhe/workspace/question_multi_choice_springmvc_webapp/src/main/webapp/resources/js/lib/angular-route.js</location>
+		</link>
+		<link>
+			<name>src/main/webapp/resources/js/lib/restangular.js</name>
+			<type>1</type>
+			<location>C:/Users/Zhe/workspace/question_multi_choice_springmvc_webapp/src/main/webapp/resources/js/lib/restangular.js</location>
+		</link>
+		<link>
+			<name>src/main/webapp/resources/js/lib/ui-bootstrap-tpls-0.12.1.js</name>
+			<type>1</type>
+			<location>C:/Users/Zhe/workspace/question_multi_choice_springmvc_webapp/src/main/webapp/resources/js/lib/ui-bootstrap-tpls-0.12.1.js</location>
+		</link>
+	</linkedResources>
 </projectDescription>

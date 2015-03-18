@@ -97,8 +97,7 @@ public class QuestionMultiChoiceServiceTest extends AbstractServiceImplTest {
 		Long questionId = 1L;
 		QuestionMultiChoice existingQcm = em.find(QuestionMultiChoice.class,
 				questionId);
-		QuestionMultiChoice duplicateTextQcm = new QuestionMultiChoice(// "ttt");
-				existingQcm.getQuestion());
+		QuestionMultiChoice duplicateTextQcm = new QuestionMultiChoice(existingQcm.getQuestion());
 
 		// act
 		// catchException(qcmService).save(duplicateTextQcm);
