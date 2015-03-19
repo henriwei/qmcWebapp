@@ -9,10 +9,12 @@
 	<script src="resources/js/lib/underscore.js"></script>
 	<script src="resources/js/lib/restangular.js"></script>
 	<script src="resources/js/lib/ui-bootstrap-tpls-0.12.1.js"></script>
+	
 	<script src="resources/js/qmcApp.js"></script>  <!-- this file create our application module, 
 	it must be after import of angularjs but before all other components of this application defined in other js files -->
 	<script src="resources/js/defaultController.js"></script>
 	<script src="resources/js/qmcController.js"></script>
+	<script src="resources/js/createQuestionController.js"></script>
 	
 	<link href="resources/css/myway.css" rel="stylesheet" type="text/css"/>
 	<link href="resources/css/bootstrap.css" rel="stylesheet" />
@@ -25,7 +27,7 @@
 		<div class="panel-body">
 			<tabset> 
 				<tab heading="Questions" select="findAllQuestions()"></tab> 
-				<tab heading="Question Edition"></tab> 
+				<tab heading="Create new question" select="createQuestion()"></tab> 
 				<tab heading="Account"></tab>
 			</tabset>
 			<div ng-view></div>

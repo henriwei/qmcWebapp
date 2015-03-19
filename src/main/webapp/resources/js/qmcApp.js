@@ -19,5 +19,9 @@ angular.module("qmcApp", ["ngResource", "ui.bootstrap", "ngRoute", "restangular"
 	            }
 	        }
 	    });
+		$routeProvider.when("/createquestion", {
+			templateUrl: viewBaseUrl + "createquestion.html",
+			controller: "createQuestionController"
+		});
 	}
 );

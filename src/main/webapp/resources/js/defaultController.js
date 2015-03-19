@@ -5,5 +5,8 @@ angular.module("qmcApp") //look for 'qmcApp' module, then called its controller 
 		$scope.findAllQuestions = function() {
 			$location.path("questions");
 		}
+		$scope.createQuestion = function() {
+			$location.path("createquestion");
+		}
 	}
 );
