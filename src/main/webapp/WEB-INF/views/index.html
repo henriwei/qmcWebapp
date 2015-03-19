@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html ng-app="qmcApp">
 <head>
-<base href="/qmc/"/>  <!-- see https://docs.angularjs.org/error/$location/nobase -->
-<title>qcm</title>
-<script src="resources/js/lib/angular.js"></script>
-<script src="resources/js/lib/angular-route.js"></script>
-<script src="resources/js/lib/angular-resource.js"></script>
-<script src="resources/js/lib/underscore.js"></script>
-<script src="resources/js/lib/restangular.js"></script>
-<script src="resources/js/lib/ui-bootstrap-tpls-0.12.1.js"></script>
-<script src="resources/js/qmcApp.js"></script>  <!-- this file create our application module, 
-it must be after import of angularjs but before all other components of this application defined in other js files -->
-<script src="resources/js/defaultController.js"></script>
-<script src="resources/js/qmcController.js"></script>
-<link href="resources/css/bootstrap.css" rel="stylesheet" />
-<link href="resources/css/bootstrap-theme.css" rel="stylesheet" />
-<script>
-        
-    </script>
+	<base href="/qmc/"/>  <!-- see https://docs.angularjs.org/error/$location/nobase -->
+	<title>qmc</title>
+	<script src="resources/js/lib/angular.js"></script>
+	<script src="resources/js/lib/angular-route.js"></script>
+	<script src="resources/js/lib/angular-resource.js"></script>
+	<script src="resources/js/lib/underscore.js"></script>
+	<script src="resources/js/lib/restangular.js"></script>
+	<script src="resources/js/lib/ui-bootstrap-tpls-0.12.1.js"></script>
+	<script src="resources/js/qmcApp.js"></script>  <!-- this file create our application module, 
+	it must be after import of angularjs but before all other components of this application defined in other js files -->
+	<script src="resources/js/defaultController.js"></script>
+	<script src="resources/js/qmcController.js"></script>
+	
+	<link href="resources/css/myway.css" rel="stylesheet" type="text/css"/>
+	<link href="resources/css/bootstrap.css" rel="stylesheet" />
+	<link href="resources/css/bootstrap-theme.css" rel="stylesheet" />
+	
 </head>
+
 <body ng-controller="defaultController">
-
 	<div class="panel panel-default">
-
 		<div class="panel-body">
 			<tabset> 
 				<tab heading="Questions" select="findAllQuestions()"></tab> 
