@@ -1,15 +1,11 @@
 package com.myway.questmultichoice.domaine;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.CollectionTable;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;

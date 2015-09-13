@@ -71,7 +71,6 @@ public class QuestionMultiChoiceServiceTest extends AbstractServiceImplTest {
 		// act
 		// use the service
 		QuestionMultiChoice qcm = qmcService.findOne(questionId);
-		List<Choice> existingChoices = qcm.getChoices();
 
 		// assert by using the entity manager directly
 		// we have to detach the object we just persist, otherwise the

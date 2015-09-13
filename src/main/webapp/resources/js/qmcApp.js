@@ -2,7 +2,8 @@
 angular.module("qmcApp", ["ngResource", "ui.bootstrap", "ngRoute", "restangular"])
 .constant("viewBaseUrl", "resources/template/")
 .constant("baseUrl", "http://localhost:8081/qmc/questmultichoice/questions/")  //create a constant for this module
-.constant("getAnswerUrl", "http://localhost:8081/qmc/questmultichoice/questions/correctanswers/")
+.constant("getCorrectAnswerUrl", "http://localhost:8081/qmc/questmultichoice/questions/correctanswers/")
+.constant("sendAnswers", "http://localhost:8081/qmc/choice/increaseSelectedTimes/")
 .config(
 	function (viewBaseUrl, $routeProvider, $locationProvider ) { /*service is Restangular, module is restangular*/
 		$locationProvider.html5Mode({

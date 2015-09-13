@@ -1,6 +1,4 @@
-/**
- * Created on Jan 4, 2012
- */
+
 package com.myway.questmultichoice.service.jpa;
 
 import javax.persistence.EntityManager;

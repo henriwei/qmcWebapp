@@ -12,6 +12,8 @@ insert into question_multi_choice (question) values ('What''s the difference bet
 
 insert into choice values (1, 1, 'mother', true, 0);
 insert into choice values (2, 1, 'daughter', false, 0);
+insert into choice values (3, 2, 'An alternative to the DriverManager facility, a DataSource object is the preferred means of getting a connection.', true, 0);
+insert into choice values (4, 2, 'Datasource creates connection', true, 0);
 
 insert into tag values (1, 'moral');
 insert into tag values (2, 'computer science');

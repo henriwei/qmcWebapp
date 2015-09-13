@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mysql.jdbc.log.LogFactory;
 import com.myway.questmultichoice.service.ChoiceService;
 
 
@@ -21,7 +20,8 @@ public class ChoiceController {
 	@Autowired
 	private ChoiceService choiceService;
 	
-	@RequestMapping("/selected")
+	@RequestMapping(value="/increaseSelectedTimes", method = RequestMethod.POST)
+	@ResponseBody
 	public void increaseSelectedTimes(@RequestBody long[] choices){
 		logger.info("receiving answers");
 		choiceService.updateChoiceSelectedTimes(choices);

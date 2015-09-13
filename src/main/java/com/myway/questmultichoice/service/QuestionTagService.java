@@ -1,8 +1,6 @@
 package com.myway.questmultichoice.service;
 
-import java.math.BigDecimal;
 import java.util.List;
-
 import com.myway.questmultichoice.domaine.QuestionTag;
 import com.myway.questmultichoice.service.exception.BusinessConstraintViolationException;
 

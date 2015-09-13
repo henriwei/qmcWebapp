@@ -1,5 +1,5 @@
 angular.module("qmcApp")
-.controller("qmcController", function ($scope, $http, $resource, baseUrl, getAnswerUrl, data) {
+.controller("qmcController", function ($scope, $http, $resource, baseUrl, getCorrectAnswerUrl, sendAnswers, data) {
 
 //	$scope.questionsResource = $resource(baseUrl + ":id", {id : "@id"});
 //	$scope.questionsWithCorrectAnswerResource = $resource(getAnswerUrl + ":id", {id : "@id"});
@@ -20,18 +20,50 @@ angular.module("qmcApp")
 	
 	$scope.sendChoices = function(){
 		$http({
-			url: baseUrl + "sendanswer",
+			url: sendAnswers,
 			method: "post",
-			data: $scope.questions
+			data: $scope.getUserSelections()
 		})
 		.success(
 			function(data) {
-				$scope.getCorrectChoices();
+				$scope.getCorrectChoices(); //retrive correct answers if user's answers are sent correctly.
 			}
 		)
 		.error(
 			function(data){
 				alert("error when sending answers");
+			}
+		);
+	}
+	
+	$scope.getUserSelections = function(){
+		var selections = [];
+		var questions = $scope.questions;
+		for(i=0; i<questions.length; i++){
+			for(j=0; j<questions[i].choices.length; j++){
+				var choice = questions[i].choices[j];
+				if(choice.selected==true)
+					selections[selections.length]=choice.id;
+			}
+		}
+		return selections;
+	}
+	
+	$scope.getCorrectChoices = function(){
+		$http({
+			url: getCorrectAnswerUrl,
+			method: "get",
+			data: $scope.questions
+		})
+		.success(
+			function(data){
+				console.log(data);
+				$scope.questions=data;
+			}
+		)
+		.error(
+			function(data){
+				alert("error when retrieving answers");
 			}
 		);
 	}

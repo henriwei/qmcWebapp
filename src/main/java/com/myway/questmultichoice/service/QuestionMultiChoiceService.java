@@ -1,9 +1,7 @@
 package com.myway.questmultichoice.service;
 
 import java.util.List;
-
 import org.springframework.dao.DataIntegrityViolationException;
-
 import com.myway.questmultichoice.domaine.Choice;
 import com.myway.questmultichoice.domaine.QuestionMultiChoice;
 import com.myway.questmultichoice.domaine.QuestionTag;

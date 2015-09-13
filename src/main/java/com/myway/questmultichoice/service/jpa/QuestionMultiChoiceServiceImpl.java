@@ -1,14 +1,12 @@
 package com.myway.questmultichoice.service.jpa;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -21,7 +19,6 @@ import com.myway.questmultichoice.domaine.Choice;
 import com.myway.questmultichoice.domaine.QuestionMultiChoice;
 import com.myway.questmultichoice.domaine.QuestionTag;
 import com.myway.questmultichoice.repository.QuestionMultiChoiceRepository;
-import com.myway.questmultichoice.service.ChoiceService;
 import com.myway.questmultichoice.service.QuestionMultiChoiceService;
 import com.myway.questmultichoice.service.QuestionTagService;
 import com.myway.questmultichoice.service.exception.BusinessConstraintViolationException;
@@ -34,7 +31,7 @@ import com.myway.questmultichoice.utils.BusinessConstraintCode;
 public class QuestionMultiChoiceServiceImpl implements
 		QuestionMultiChoiceService {
 	
-	private Log log = LogFactory.getLog(QuestionMultiChoiceServiceImpl.class);
+	private Logger log = LoggerFactory.getLogger(QuestionMultiChoiceServiceImpl.class);
 	
 	@Autowired
 	private QuestionMultiChoiceRepository qcmRepository;

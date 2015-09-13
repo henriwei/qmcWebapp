@@ -1,12 +1,8 @@
-/**
- * Created on Jan 4, 2012
- */
 package com.myway.questmultichoice.service.jpa.configuration;
 
 import javax.sql.DataSource;
 
 import org.dbunit.DataSourceDatabaseTester;
-import org.dbunit.util.fileloader.XlsDataFileLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +11,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-
-import com.mysql.jdbc.Messages;
 
 /**
  * This class define application context for service layer testing. Unlike the

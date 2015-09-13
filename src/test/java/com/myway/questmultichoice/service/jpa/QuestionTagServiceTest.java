@@ -1,39 +1,22 @@
 package com.myway.questmultichoice.service.jpa;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import static com.googlecode.catchexception.CatchException.catchException;
+import static com.googlecode.catchexception.CatchException.caughtException;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.BeforeClass;
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.GenericXmlApplicationContext;
-import org.springframework.dao.DataIntegrityViolationException;
 
-import static com.googlecode.catchexception.CatchException.*;
-import com.myway.questmultichoice.domaine.QuestionMultiChoice;
 import com.myway.questmultichoice.domaine.QuestionTag;
 import com.myway.questmultichoice.service.QuestionMultiChoiceService;
 import com.myway.questmultichoice.service.QuestionTagService;
 import com.myway.questmultichoice.service.exception.BusinessConstraintViolationException;
 import com.myway.questmultichoice.service.jpa.annotation.DataSets;
 
-import static org.assertj.core.api.Assertions.*;
-
 @DataSets
 public class QuestionTagServiceTest extends AbstractServiceImplTest {
-	// static private QuestionTagService qcmTagService;
-	// @BeforeClass
-	// static public void init() {
-	// GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-	// ctx.load("app-context.xml");
-	// ctx.refresh();
-	// qcmTagService = ctx.getBean(
-	// "questionTagServiceImplJpa",
-	// QuestionTagService.class);
-	// }
 
 	@Autowired
 	QuestionTagService tagService;
@@ -44,11 +27,11 @@ public class QuestionTagServiceTest extends AbstractServiceImplTest {
 	@Test
 	public void findOne_shouldReturnCorrectTag() {
 		// arrage
-		Long tagId = 1L;
-		QuestionTag expected = em.find(QuestionTag.class, tagId);
+		Long existingTagId = 1L;
+		QuestionTag expected = em.find(QuestionTag.class, existingTagId);
 		em.detach(expected);
 		// act
-		QuestionTag tag = tagService.findOne(tagId);
+		QuestionTag tag = tagService.findOne(existingTagId);
 
 		// assert
 		assertThat(tag).isEqualTo(expected);
@@ -57,25 +40,29 @@ public class QuestionTagServiceTest extends AbstractServiceImplTest {
 	@Test
 	public void findByName_shouldReturnCorrectTag_whenExist(){
 		//arrage
-		String existingTagNameOne = "database";
-		Long correctTagId = 1L;
+		Long existingTagId = 1L;
+		QuestionTag expected = em.find(QuestionTag.class, existingTagId);
+		String existingTagName = expected.getName();
+		em.detach(expected);
 		//act
-		QuestionTag tag = tagService.findByName(existingTagNameOne);
+		QuestionTag tagFound = tagService.findByName(existingTagName);
 		
 		//assert
-		assertThat(tag.getId()).isEqualTo(correctTagId);
+		assertThat(tagFound.getId()).isEqualTo(existingTagId);
 	}
 	
 	@Test
 	public void findByName_shouldReturnCorrectTag_whenExistWithJustCaseDifference(){
 		//arrage
-		String existingTagNameOne = "Database";
-		Long correctTagId = 1L;
+		Long existingTagId = 1L;
+		QuestionTag expected = em.find(QuestionTag.class, existingTagId);
+		String existingTagName = expected.getName();
+		em.detach(expected);
 		//act
-		QuestionTag tag = tagService.findByName(existingTagNameOne);
+		QuestionTag tagFound = tagService.findByName(existingTagName.toUpperCase());
 		
 		//assert
-		assertThat(tag.getId()).isEqualTo(correctTagId);
+		assertThat(tagFound.getId()).isEqualTo(existingTagId);
 	}
 	
 	@Test

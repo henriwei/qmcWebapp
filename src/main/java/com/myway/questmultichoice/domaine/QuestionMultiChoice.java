@@ -24,9 +24,6 @@ import javax.persistence.Table;
 //)
 public class QuestionMultiChoice extends AbstractEntityBase{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6495052438854470752L;
 	
 //	@Nonnull  // from java.annotation, it's for validation

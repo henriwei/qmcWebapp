@@ -1,10 +1,7 @@
 package com.myway.questmultichoice.repository;
 
 import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
 import com.myway.questmultichoice.domaine.QuestionMultiChoice;
 
 public interface QuestionMultiChoiceRepository extends CrudRepository<QuestionMultiChoice, Long>{

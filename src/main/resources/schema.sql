@@ -28,7 +28,7 @@ CREATE TABLE QUESTION_MULTI_CHOICE (
 CREATE TABLE CHOICE (
 	ID INT NOT NULL AUTO_INCREMENT,
 	QUESTION_ID INT NOT NULL,
-	TEXT VARCHAR(100) NOT NULL,	/*it seems impossible to avoid duplication of choice for list of choice for a quesiton by adding unique constraint on TEXT column*/ 
+	TEXT VARCHAR(200) NOT NULL,	/*it seems impossible to avoid duplication of choice for list of choice for a quesiton by adding unique constraint on TEXT column*/ 
 	CORRECTNESS BOOLEAN,
 	SELECTEDTIMES INT NOT NULL,
 	PRIMARY KEY (ID),

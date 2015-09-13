@@ -1,10 +1,8 @@
 package com.myway.questmultichoice.repository;
 
 import java.util.List;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
 import com.myway.questmultichoice.domaine.QuestionTag;
 
 public interface QuestionTagRepository extends CrudRepository<QuestionTag, Long>{

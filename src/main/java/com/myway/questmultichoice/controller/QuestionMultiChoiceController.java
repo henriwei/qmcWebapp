@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,7 +34,7 @@ public class QuestionMultiChoiceController {
 	}
 	
 	@RequestMapping(value = "/questions/correctanswers", method = RequestMethod.GET)
-	@ResponseBody //indicate that the value return by the method should be written in the http response stream directly.
+	@ResponseBody
 	@JsonView(View.QmcCorrectAnswer.class)
 	public List<QuestionMultiChoice> findAllWithAnswer(){
 		return qmcService.findAll();

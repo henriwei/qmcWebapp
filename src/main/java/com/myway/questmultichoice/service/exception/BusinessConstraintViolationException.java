@@ -3,6 +3,7 @@ package com.myway.questmultichoice.service.exception;
 import com.myway.questmultichoice.utils.BusinessConstraintCode;
 
 public class BusinessConstraintViolationException extends Exception{
+	private static final long serialVersionUID = 1L;
 	private BusinessConstraintCode code;
 	
 	public BusinessConstraintViolationException() {

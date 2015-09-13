@@ -1,6 +1,3 @@
-/**
- * Created on Jan 4, 2012
- */
 package com.myway.questmultichoice.service.jpa.listener;
 
 import java.io.File;
@@ -9,20 +6,15 @@ import java.net.URL;
 
 import org.dbunit.IDatabaseTester;
 import org.dbunit.dataset.IDataSet;
-import org.dbunit.util.fileloader.XlsDataFileLoader;
+import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlProducer;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestExecutionListener;
+import org.xml.sax.InputSource;
 
 import com.myway.questmultichoice.service.jpa.annotation.DataSets;
 
-import org.dbunit.dataset.xml.FlatXmlDataSet;
-import org.dbunit.dataset.xml.FlatXmlProducer;
-import org.xml.sax.InputSource;
 
-/**
- * @author Clarence
- *
- */
 public class ServiceTestExecutionListener implements TestExecutionListener {
 
 	private IDatabaseTester databaseTester;

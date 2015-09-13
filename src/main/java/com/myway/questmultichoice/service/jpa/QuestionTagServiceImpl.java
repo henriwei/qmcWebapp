@@ -4,22 +4,17 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Lists;
-import com.myway.questmultichoice.domaine.QuestionMultiChoice;
 import com.myway.questmultichoice.domaine.QuestionTag;
-import com.myway.questmultichoice.repository.QuestionMultiChoiceRepository;
 import com.myway.questmultichoice.repository.QuestionTagRepository;
 import com.myway.questmultichoice.service.QuestionTagService;
 import com.myway.questmultichoice.service.exception.BusinessConstraintViolationException;
@@ -28,7 +23,7 @@ import com.myway.questmultichoice.service.exception.BusinessConstraintViolationE
 @Repository
 @Transactional
 public class QuestionTagServiceImpl implements QuestionTagService{
-	private Logger log = Logger.getLogger(QuestionTagServiceImpl.class);
+	private Logger log = LoggerFactory.getLogger(QuestionTagServiceImpl.class);
 	
 	@PersistenceContext
 	private EntityManager em;
